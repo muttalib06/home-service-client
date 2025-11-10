@@ -1,5 +1,7 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
 
 * {
@@ -13,5 +15,8 @@
   border-color: #ff7700;
 }
 .secondary-btn{
+  background-color: #ff7700;
+}
+.paginationCustom .swiper-pagination-bullet-active {
   background-color: #ff7700;
 }

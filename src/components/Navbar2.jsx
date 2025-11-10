@@ -1,12 +1,9 @@
-import React, { useState } from "react";
-import { NavLink } from "react-router";
-import { FaBars, FaHome, FaTimes } from "react-icons/fa";
+import React from "react";
 
-const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+const Navbar2 = () => {
   return (
     <div className="bg-black text-white flex flex-col lg:flex-row justify-between items-center py-6 md:px-5 mt-3">
-      <div className="flex justify-between items-center w-full lg:w-0 px-4">
+      <div className="flex justify-between items-center w-full px-4">
         <div className="flex gap-2  items-center">
           <FaHome className="text-orange-500 text-4xl"></FaHome>
           <h3 className="text-2xl italic font-bold">ServEase</h3>
@@ -19,22 +16,22 @@ const Navbar = () => {
       </div>
       {/* Desktop menu */}
       <ul className="hidden lg:flex gap-5">
-        <li className="hover:text-orange-500">
+        <li>
           <NavLink>Home</NavLink>
         </li>
-        <li className="hover:text-orange-500">
+        <li>
           <NavLink>Services</NavLink>
         </li>
-        <li className="hover:text-orange-500">
+        <li>
           <NavLink>My Services</NavLink>
         </li>
-        <li className="hover:text-orange-500">
+        <li>
           <NavLink>Add Service</NavLink>
         </li>
-        <li className="hover:text-orange-500">
+        <li>
           <NavLink>My Bookings</NavLink>
         </li>
-        <li className="hover:text-orange-500">
+        <li>
           <NavLink>Profile</NavLink>
         </li>
       </ul>
@@ -42,8 +39,8 @@ const Navbar = () => {
       {/* mobile and ipad menu */}
 
       {isOpen && (
-        <div className="lg:hidden absolute right-0 mt-8 text-white bg-black w-48 shadow-lg z-50 rounded p-5 ">
-          <ul className="space-y-5 ">
+        <div className="lg:hidden absolute right-0 mt-8 text-black bg-white w-48 shadow-lg z-50 rounded">
+          <ul className="space-y-3">
             <li>
               <NavLink>Home</NavLink>
             </li>
@@ -63,12 +60,6 @@ const Navbar = () => {
               <NavLink>Profile</NavLink>
             </li>
           </ul>
-          <div className="space-y-3 mt-4 ">
-            <button className="btn bg-[#021f2a] text-white w-full">Login</button>
-            <button className=" btn  w-full shadow-none secondary-btn border-none text-white border-color-primary">
-              Register
-            </button>
-          </div>
         </div>
       )}
 
@@ -82,4 +73,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default Navbar2;

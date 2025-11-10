@@ -6,7 +6,9 @@ const Home = () => {
                 <div >
                         <Banner></Banner>
 
-                        <h1>Home</h1>
+                        <div className='mt-10'>
+                                <h2 className='text-4xl text-center'>Reliable ServEase <br /> Services <span className='font-bold'>You Can Trust</span> </h2>
+                        </div>
                         
                 </div>
         );
