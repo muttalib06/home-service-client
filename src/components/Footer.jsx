@@ -1,16 +1,16 @@
 import React from "react";
 import logo from "../assets/logo-home-service.png";
-import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
+import { FaFacebook, FaHome, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 
 const Footer = () => {
   return (
    <>
-    <div className="bg-[#021f2a] text-white py-10">
+    <div className="bg-[#101d23] text-white py-10">
       <div className="flex justify-evenly items-start">
         <div className=" space-y-3">
           <div className="flex items-center space-y-3">
-            <img className="w-20" src={logo} alt="" />
+          <FaHome className="text-orange-500 text-4xl"></FaHome>
             <h3 className="text-2xl italic font-bold">ServEase</h3>
           </div>
           <p className="text-gray-400">
@@ -81,8 +81,8 @@ const Footer = () => {
         </div>
       </div>
     </div>
-     <div className="bg-[#021f2a] px-10 py-3 ">
-       <div className=" flex justify-between items-center border-t border-blue-400 py-3">
+     <div className="bg-[#101d23] px-10 py-3 ">
+       <div className=" flex justify-between items-center border-t border-orange-400 py-3">
          <p className="text-gray-400 text-[.8rem]">© 2025 Shromik. All rights reserved.</p>
         <p className="text-gray-400 text-[.8rem]">Privacy Policy | Terms & Conditions</p>
        </div>

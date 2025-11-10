@@ -1,17 +1,17 @@
 @import "tailwindcss";
 @plugin "daisyui";
-@plugin "daisyui/theme" {
-  name: "light";
-  --color-primary:#11b4f5;
-  --color-secondary: teal;
-}
-
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
 
 * {
   font-family: "DM Sans", sans-serif;
   letter-spacing: 1px;
 }
-.primary-color{
-  color: #11b4f5;
+.primary-color {
+  color: #ff7700;
+}
+.primary-btn{
+  border-color: #ff7700;
+}
+.secondary-btn{
+  background-color: #ff7700;
 }
