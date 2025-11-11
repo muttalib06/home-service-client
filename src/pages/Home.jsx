@@ -1,21 +1,49 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Banner from "../components/Banner";
 import axios from "axios";
 import ServiceCard from "../components/ServiceCard";
-import { motion, useInView } from "motion/react";
+import { motion } from "motion/react";
+import Testimonial from "../components/Testimonial";
+import Spinner from "../components/Spinner";
+import { Pagination, Autoplay } from "swiper/modules";
+
+import { Swiper, SwiperSlide } from "swiper/react";
 
 const Home = () => {
   const [services, setServices] = useState([]);
+  const [customers, setCustomers] = useState([]);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: false, amount: 0.2 });
   useEffect(() => {
-    axios
-      .get("http://localhost:3000/services-6")
-      .then((res) => setServices(res.data))
-      .catch((err) => console.log(err))
-      .finally();
+    const fetchCustomers = async () => {
+      try {
+        const response = await axios.get("http://localhost:3000/customers");
+        setCustomers(response.data);
+      } catch (err) {
+        console.log(err);
+        setError("Failed to load data");
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchCustomers();
   }, []);
+  useEffect(() => {
+    const fetchServices = async () => {
+      try {
+        const response = await axios.get("http://localhost:3000/services-6");
+        setServices(response.data);
+      } catch (error) {
+        console.log(error);
+        setError("Failed to fetch data");
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchServices();
+  }, []);
+  console.log(customers);
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -27,30 +55,64 @@ const Home = () => {
         <Banner></Banner>
 
         {/* services section */}
+        <div className="mt-10">
+          <div className="flex justify-center items-center px-4 lg:px-0">
+            <h2 className="text-4xl text-center border-b-2 border-orange-500 pb-3">
+              Reliable ServEase <br /> Services{" "}
+              <span className="font-bold">You Can Trust</span>{" "}
+            </h2>
+          </div>
 
-        <motion.div
-          ref={ref}
-          initial={{ opacity: 0, y: 100 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
-          transition={{ duration: 2 }}
-          className="mt-10"
-        >
-          <div className="mt-10">
-            <div className="flex justify-center items-center px-4 lg:px-0">
-              <h2 className="text-4xl text-center border-b-2 border-orange-500 pb-3">
-                Reliable ServEase <br /> Services{" "}
-                <span className="font-bold">You Can Trust</span>{" "}
-              </h2>
+          {loading ? (
+            <Spinner></Spinner>
+          ) : error ? (
+            <div className="flex justify-center items-center">
+              <p className="text-gray-500 text-3xl mt-5">{error}!</p>
             </div>
-
-
+          ) : (
             <div className="xl:max-w-full xl:px-4 2xl:px-0  2xl:max-w-4/5 mx-auto px-4 grid lg:grid-cols-3 gap-6 mt-10">
               {services.map((service) => (
                 <ServiceCard key={service._id} service={service}></ServiceCard>
               ))}
             </div>
+          )}
+        </div>
+
+        {/* Testimonial */}
+        <div className="mt-10">
+          <div className="flex justify-center items-center">
+            <h2 className="text-4xl font-bold text-center border-b-2 border-orange-500 pb-3">
+              Happy Client Says About Us
+            </h2>
           </div>
-        </motion.div>
+          {/* testimonial card */}
+          <div className="flex items-center justify-center min-h-screen mt-5 bg-[#f6f5ed] p-4">
+          <div className="max-w-4/5 mx-auto">
+              <Swiper
+              modules={[Autoplay]}
+              spaceBetween={30}
+              slidesPerView={3} // একসাথে ৩টা দেখাবে
+              loop={true}
+              autoplay={{
+                delay: 3000,
+                disableOnInteraction: false,
+              }}
+              speed={800}
+              breakpoints={{
+                0: { slidesPerView: 1 },
+                768: { slidesPerView: 2 },
+                1024: { slidesPerView: 3 },
+              }}
+            >
+              {customers.map((customer, index) => (
+                <SwiperSlide key={index}>
+                  <Testimonial customer={customer} />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+          </div>
+        </div>
       </div>
     </motion.div>
   );

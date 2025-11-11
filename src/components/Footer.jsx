@@ -81,7 +81,7 @@ const Footer = () => {
       </div>
     </div>
      <div className="bg-[#101d23] px-10 py-3 ">
-       <div className=" flex justify-between items-center border-t border-orange-400 py-3">
+       <div className=" flex justify-between items-center border-t border-gray-500 py-3">
          <p className="text-gray-400 text-[.8rem]">© 2025 Shromik. All rights reserved.</p>
         <p className="text-gray-400 text-[.8rem]">Privacy Policy | Terms & Conditions</p>
        </div>
