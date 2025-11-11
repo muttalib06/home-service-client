@@ -1,12 +1,11 @@
 import React from "react";
-import logo from "../assets/logo-home-service.png";
 import { FaFacebook, FaHome, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 
 const Footer = () => {
   return (
    <>
-    <div className="bg-[#101d23] text-white py-10">
+    <div className="bg-[#101d23] text-white py-10 mt-8">
       <div className="flex flex-col lg:flex-row justify-evenly items-start pl-8 lg:pl-0 space-y-8 lg:space-y-0">
         <div className=" space-y-3">
           <div className="flex items-center space-y-3">

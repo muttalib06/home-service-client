@@ -19,19 +19,19 @@ const Navbar = () => {
       </div>
       {/* Desktop menu */}
       <ul className="hidden lg:flex gap-5">
-        <li className="hover:text-orange-500">
+        <li className="hover:text-[#ff7700]">
           <NavLink>Home</NavLink>
         </li>
-        <li className="hover:text-orange-500">
+        <li className="hover:text-[#ff7700]">
           <NavLink>Services</NavLink>
         </li>
-        <li className="hover:text-orange-500">
+        <li className="hover:text-[#ff7700]">
           <NavLink>My Services</NavLink>
         </li>
-        <li className="hover:text-orange-500">
+        <li className="hover:text-[#ff7700]">
           <NavLink>Add Service</NavLink>
         </li>
-        <li className="hover:text-orange-500">
+        <li className="hover:text-[#ff7700]">
           <NavLink>My Bookings</NavLink>
         </li>
         <li className="hover:text-orange-500">
