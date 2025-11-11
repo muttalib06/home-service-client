@@ -1,10 +1,18 @@
 import React from "react";
 import { BsArrowRight } from "react-icons/bs";
+import { motion} from "motion/react";
 
 const ServiceCard = ({ service }) => {
   const { Image_URL, Service_Name,Description } = service;
   return (
-    <div className="h-full flex flex-col bg-white rounded-lg overflow-hidden  transition-shadow">
+          <motion.div
+    
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: false, amount: 0.2 }}
+                  transition={{ duration: 0.8, ease: "easeOut" }}
+                >
+                    <div className="h-full flex flex-col bg-white rounded-lg overflow-hidden  transition-shadow">
       {/* Image Section */}
       <div>
         <img className="w-full h-48 object-cover rounded-t-lg" src={Image_URL} alt={Service_Name} />
@@ -31,6 +39,9 @@ const ServiceCard = ({ service }) => {
         {/* Bottom Border Line */}
       </div>
     </div>
+                </motion.div>
+
+  
   );
 };
 
