@@ -64,18 +64,22 @@ const Navbar = () => {
             </li>
           </ul>
           <div className="space-y-3 mt-4 ">
-            <button className="btn bg-[#021f2a] text-white w-full">Login</button>
+            <button className="btn bg-[#021f2a] text-white w-full">
+              <NavLink to="/login">Login</NavLink>
+            </button>
             <button className=" btn  w-full shadow-none secondary-btn border-none text-white border-color-primary">
-              Register
+              <NavLink to="/signup">Register</NavLink>
             </button>
           </div>
         </div>
       )}
 
       <div className="hidden lg:block space-x-3 ">
-        <button className="btn bg-[#021f2a] text-white">Login</button>
+        <button className="btn bg-[#021f2a] text-white">
+          <NavLink to="/login">Login</NavLink>
+        </button>
         <button className=" btn  shadow-none secondary-btn border-none text-white border-color-primary">
-          Register
+          <NavLink to="/signup">Register</NavLink>
         </button>
       </div>
     </div>

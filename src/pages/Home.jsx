@@ -8,6 +8,7 @@ import Spinner from "../components/Spinner";
 import { Pagination, Autoplay } from "swiper/modules";
 
 import { Swiper, SwiperSlide } from "swiper/react";
+import MeetTeam from "../components/MeetTeam";
 
 const Home = () => {
   const [services, setServices] = useState([]);
@@ -78,6 +79,13 @@ const Home = () => {
           )}
         </div>
 
+        {/* Team section */}
+
+        <div className="mt-10">
+          <MeetTeam></MeetTeam>
+
+        </div>
+
         {/* Testimonial */}
         <div className="mt-10">
           <div className="flex justify-center items-center">
@@ -91,13 +99,13 @@ const Home = () => {
               <Swiper
               modules={[Autoplay]}
               spaceBetween={30}
-              slidesPerView={3} // একসাথে ৩টা দেখাবে
+              slidesPerView={3} 
               loop={true}
               autoplay={{
                 delay: 3000,
                 disableOnInteraction: false,
               }}
-              speed={800}
+              speed={2000}
               breakpoints={{
                 0: { slidesPerView: 1 },
                 768: { slidesPerView: 2 },

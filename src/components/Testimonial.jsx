@@ -16,7 +16,7 @@ const Testimonial = ({ customer }) => {
 
         {/* Testimonial Text */}
         <p className="text-gray-600 text-lg leading-relaxed mt-8 text-center">
-        {review}
+          {review}
         </p>
 
         {/* Author Section */}
