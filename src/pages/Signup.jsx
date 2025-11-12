@@ -12,14 +12,48 @@ const Signup = () => {
 
   const handleSignUp = (e) => {
     e.preventDefault();
-
     const name = e.target.name.value;
     const email = e.target.email.value;
     const password = e.target.password.value;
     const photoUrl = e.target.photo_url.value;
-    console.log(name,email,password,photoUrl)
 
-    signup();
+    // Password validation
+    if (!password) {
+      setError("Password is required.");
+      setLoading(false);
+      return;
+    }
+
+    if (password.length < 6) {
+      setError("Password must be at least 8 characters long.");
+      setLoading(false);
+      return;
+    }
+
+    if (!/[A-Z]/.test(password)) {
+      setError("Password must contain at least one uppercase letter (A-Z).");
+      setLoading(false);
+      return;
+    }
+
+    if (!/[a-z]/.test(password)) {
+      setError("Password must contain at least one lowercase letter (a-z).");
+      setLoading(false);
+      return;
+    }
+
+    // If validation passes,call signup function;
+    signup(email, password)
+      .then((result) => {
+        const user = result.user;
+        setUser(user);
+      })
+      .catch((error) => {
+        setError(error.message)
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   };
 
   // google sign in;
