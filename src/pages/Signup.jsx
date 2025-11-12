@@ -5,13 +5,13 @@ import Spinner from "../components/Spinner";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Signup = () => {
-  const { signupWithGoogle, setUser, signup, user } = useContext(AuthContext);
+  const { signupWithGoogle, setUser, signup,} = useContext(AuthContext);
   const [error, setError] = useState("");
   const [error2, setError2] = useState("");
   const [loading, setLoading] = useState(false);
   const [visible, setVisible] = useState(false);
 
-  const navigation = useNavigate();
+  const navigate = useNavigate();
 
   // create user with email and password
 
@@ -53,7 +53,7 @@ const Signup = () => {
       .then((result) => {
         const user = result.user;
         setUser(user);
-        navigation("/");
+        navigate("/");
       })
       .catch((error) => {
         let message = "";
@@ -87,7 +87,7 @@ const Signup = () => {
       .then((result) => {
         const user = result.user;
         setUser(user);
-        navigation("/");
+        navigate("/");
       })
       .catch((error) => {
         if (error.code === "auth/popup-closed-by-user") {

@@ -1,27 +1,26 @@
 import React, { useContext, useEffect, useState } from "react";
-import { NavLink, useNavigation } from "react-router";
+import { NavLink, useNavigate} from "react-router";
 import { AuthContext } from "../provider/AuthProvider";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { FirebaseError } from "firebase/app";
 import Spinner from "../components/Spinner";
+import { toast } from "react-toastify";
 
 const Login = () => {
-  const { login} = useContext(AuthContext);
+  const { login, signupWithGoogle } = useContext(AuthContext);
   const [visible, setVisible] = useState(false);
-  const [error, setError] = useState("");
-  const [error2, setError2] = useState("");
   const [loading, setLoading] = useState(false);
-  const navigation = useNavigation();
+
+  const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
-    setError("");
     setLoading(true);
     const email = e.target.email.value;
     const password = e.target.password.value;
     login(email, password)
       .then(() => {
-        navigation("/");
+        navigate("/");
       })
       .catch((error) => {
         let message;
@@ -37,10 +36,45 @@ const Login = () => {
         } else {
           message = "Something went wrong. Please try again.";
         }
-        setError(message);
+        toast.error(message, {
+          position: "top-right",
+          autoClose: "4000",
+        });
       })
       .finally(() => {
         setLoading(false);
+      });
+  };
+
+  // login using google authentication method;
+  const handleSignInWithGoogle = () => {
+    setLoading(true);
+    signupWithGoogle()
+      .then(() => {
+        navigate("/");
+      })
+      .catch((error) => {
+        let message;
+
+        if (error.code === "auth/popup-closed-by-user") {
+          message = "Google sign-in was cancelled. Please try again.";
+        } else if (error.code === "auth/network-request-failed") {
+          message = "Network error. Please check your connection.";
+        } else if (
+          error.code === "auth/account-exists-with-different-credential"
+        ) {
+          message =
+            "An account already exists with the same email using a different sign-in method.";
+        } else if (error.code === "auth/cancelled-popup-request") {
+          message = "Another sign-in attempt was cancelled.";
+        } else {
+          message =
+            "Something went wrong during Google sign-in. Please try again later.";
+        }
+        toast.error(message,{
+          position:"top-right",
+          autoClose:"4000"
+        })
       });
   };
   useEffect(() => {
@@ -84,7 +118,6 @@ const Login = () => {
               <div>
                 <a className="link link-hover">Forgot password?</a>
               </div>
-              <p className=" my-2 text-red-500">{error}</p>
               <button
                 type="submit"
                 className="btn btn-neutral mt-4 w-full text-white secondary-btn border-none"
@@ -100,7 +133,10 @@ const Login = () => {
           </div>
           {/* google button */}
 
-          <button className="btn bg-white text-black border-[#e5e5e5] w-full">
+          <button
+            onClick={handleSignInWithGoogle}
+            className="btn bg-white text-black border-[#e5e5e5] w-full"
+          >
             <svg
               aria-label="Google logo"
               width="16"
