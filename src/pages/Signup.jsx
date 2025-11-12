@@ -122,7 +122,6 @@ const Signup = () => {
   if (loading) {
     return <Spinner></Spinner>;
   }
-  console.log(user);
   return (
     <div className="bg-[#f6f5ed] ">
       <div>

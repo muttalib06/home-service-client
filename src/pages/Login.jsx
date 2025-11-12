@@ -2,9 +2,11 @@ import React, { useContext, useEffect, useState } from "react";
 import { NavLink, useNavigation } from "react-router";
 import { AuthContext } from "../provider/AuthProvider";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { FirebaseError } from "firebase/app";
+import Spinner from "../components/Spinner";
 
 const Login = () => {
-  const { login, setUser } = useContext(AuthContext);
+  const { login} = useContext(AuthContext);
   const [visible, setVisible] = useState(false);
   const [error, setError] = useState("");
   const [error2, setError2] = useState("");
@@ -13,6 +15,8 @@ const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
+    setError("");
+    setLoading(true);
     const email = e.target.email.value;
     const password = e.target.password.value;
     login(email, password)
@@ -20,12 +24,31 @@ const Login = () => {
         navigation("/");
       })
       .catch((error) => {
-        setError(error.message);
+        let message;
+        if (error.code === "auth/user-not-found") {
+          message = "No account found with this email. Please sign up first.";
+        } else if (error.code === "auth/wrong-password") {
+          message = "Incorrect password. Please try again.";
+        } else if (error.code === "auth/invalid-email") {
+          message =
+            "The email address is not valid. Please check and try again.";
+        } else if (error.code === "auth/user-disabled") {
+          message = "This account has been disabled. Please contact support.";
+        } else {
+          message = "Something went wrong. Please try again.";
+        }
+        setError(message);
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+  if (loading) {
+    return <Spinner></Spinner>;
+  }
   return (
     <div className="bg-[#f6f5ed] ">
       <div>
@@ -61,6 +84,7 @@ const Login = () => {
               <div>
                 <a className="link link-hover">Forgot password?</a>
               </div>
+              <p className=" my-2 text-red-500">{error}</p>
               <button
                 type="submit"
                 className="btn btn-neutral mt-4 w-full text-white secondary-btn border-none"
