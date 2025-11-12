@@ -44,6 +44,10 @@ const Home = () => {
     };
     fetchServices();
   }, []);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <motion.div
       initial={{ opacity: 0 }}

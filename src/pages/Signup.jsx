@@ -1,12 +1,17 @@
-import React, { useContext, useState } from "react";
-import { NavLink } from "react-router";
+import React, { useContext, useEffect, useState } from "react";
+import { NavLink, useNavigate } from "react-router";
 import { AuthContext } from "../provider/AuthProvider";
 import Spinner from "../components/Spinner";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Signup = () => {
-  const { signupWithGoogle, setUser, signup } = useContext(AuthContext);
+  const { signupWithGoogle, setUser, signup, user } = useContext(AuthContext);
   const [error, setError] = useState("");
+  const [error2, setError2] = useState("");
   const [loading, setLoading] = useState(false);
+  const [visible, setVisible] = useState(false);
+
+  const navigation = useNavigate();
 
   // create user with email and password
 
@@ -16,7 +21,8 @@ const Signup = () => {
     const email = e.target.email.value;
     const password = e.target.password.value;
     const photoUrl = e.target.photo_url.value;
-
+    setError("");
+    setLoading(true);
     // Password validation
     if (!password) {
       setError("Password is required.");
@@ -47,9 +53,26 @@ const Signup = () => {
       .then((result) => {
         const user = result.user;
         setUser(user);
+        navigation("/");
       })
       .catch((error) => {
-        setError(error.message)
+        let message = "";
+
+        if (error.code === "auth/email-already-in-use") {
+          message =
+            "This email is already registered. Please login or use a different email.";
+        } else if (error.code === "auth/invalid-email") {
+          message =
+            "The email address is not valid. Please check and try again.";
+        } else if (error.code === "auth/weak-password") {
+          message = "Password is too weak. Please use at least 6 characters.";
+        } else if (error.code === "auth/user-not-found") {
+          message = "No account found with this email. Please sign up first.";
+        } else {
+          message = "Something went wrong. Please try again.";
+        }
+
+        setError(message);
       })
       .finally(() => {
         setLoading(false);
@@ -58,30 +81,31 @@ const Signup = () => {
 
   // google sign in;
   const handleSignUpWithGoogle = () => {
-    setError("");
+    setError2("");
     setLoading(true);
     signupWithGoogle()
       .then((result) => {
         const user = result.user;
         setUser(user);
+        navigation("/");
       })
       .catch((error) => {
         if (error.code === "auth/popup-closed-by-user") {
-          setError(
+          setError2(
             "Sign-up window was closed before completing the process. Please try again."
           );
         } else if (error.code === "auth/network-request-failed") {
-          setError(
+          setError2(
             "Network error occurred. Please check your internet connection and try again."
           );
         } else if (
           error.code === "auth/account-exists-with-different-credential"
         ) {
-          setError(
+          setError2(
             "An account already exists with this email. Try signing in instead."
           );
         } else {
-          setError(
+          setError2(
             "Something went wrong during sign-up. Please try again later."
           );
         }
@@ -91,9 +115,14 @@ const Signup = () => {
       });
   };
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   if (loading) {
     return <Spinner></Spinner>;
   }
+  console.log(user);
   return (
     <div className="bg-[#f6f5ed] ">
       <div>
@@ -126,16 +155,22 @@ const Signup = () => {
                 className="input w-full"
                 placeholder="Photo URL"
               />
-              <label className="label">Password</label>
-              <input
-                type="password"
-                name="password"
-                className="input w-full"
-                placeholder="Password"
-              />
-              <div>
-                <a className="link link-hover">Forgot password?</a>
+              <div className="relative w-full">
+                <label className="label">Password</label>
+                <input
+                  type={visible ? "text" : "password"}
+                  name="password"
+                  className="input w-full pr-10"
+                  placeholder="Password"
+                />
+                <button
+                  onClick={() => setVisible(!visible)}
+                  className="absolute right-3 top-8 text-md z-10"
+                >
+                  {visible ? <FaEyeSlash /> : <FaEye />}
+                </button>
               </div>
+              <p className=" my-2 text-red-500">{error}</p>
               <button
                 type="submit"
                 className="btn btn-neutral mt-4 w-full text-white secondary-btn border-none"
@@ -150,7 +185,8 @@ const Signup = () => {
             <div className="flex-grow border-t border-gray-300"></div>
           </div>
           {/* google button */}
-          <p className="text-center my-2 text-red-500">{error}</p>
+
+          <p className="text-[.8rem] my-2 text-red-500">{error2}</p>
 
           <button
             onClick={handleSignUpWithGoogle}
@@ -183,7 +219,7 @@ const Signup = () => {
                 ></path>
               </g>
             </svg>
-            Login with Google
+            Signup with Google
           </button>
           <p className="text-center mt-5 text-[.8rem]">
             Already have an account?{" "}

@@ -1,10 +1,31 @@
-import React, { useContext } from "react";
-import { NavLink } from "react-router";
+import React, { useContext, useEffect, useState } from "react";
+import { NavLink, useNavigation } from "react-router";
 import { AuthContext } from "../provider/AuthProvider";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Login = () => {
-  const { user2 } = useContext(AuthContext);
-  console.log(user2);
+  const { login, setUser } = useContext(AuthContext);
+  const [visible, setVisible] = useState(false);
+  const [error, setError] = useState("");
+  const [error2, setError2] = useState("");
+  const [loading, setLoading] = useState(false);
+  const navigation = useNavigation();
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    login(email, password)
+      .then(() => {
+        navigation("/");
+      })
+      .catch((error) => {
+        setError(error.message);
+      });
+  };
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="bg-[#f6f5ed] ">
       <div>
@@ -12,25 +33,38 @@ const Login = () => {
       </div>
       <div className="flex justify-center items-start h-screen w-full mt-10">
         <div className="w-full md:w-4/5 lg:w-2/3 xl:w-2/5 mx-4 md:mx-0 bg-white shadow p-8 rounded">
-          <form>
+          <form onSubmit={handleLogin}>
             <fieldset className="fieldset">
               <label className="label">Email</label>
               <input
                 type="email"
+                name="email"
                 className="input w-full"
                 placeholder="Email"
               />
 
-              <label className="label">Password</label>
-              <input
-                type="password"
-                className="input w-full"
-                placeholder="Password"
-              />
+              <div className="relative w-full">
+                <label className="label">Password</label>
+                <input
+                  type={visible ? "text" : "password"}
+                  name="password"
+                  className="input w-full pr-10"
+                  placeholder="Password"
+                />
+                <button
+                  onClick={() => setVisible(!visible)}
+                  className="absolute right-3 top-8 text-md z-10"
+                >
+                  {visible ? <FaEyeSlash /> : <FaEye />}
+                </button>
+              </div>
               <div>
                 <a className="link link-hover">Forgot password?</a>
               </div>
-              <button className="btn btn-neutral mt-4 w-full text-white secondary-btn border-none">
+              <button
+                type="submit"
+                className="btn btn-neutral mt-4 w-full text-white secondary-btn border-none"
+              >
                 Login
               </button>
             </fieldset>

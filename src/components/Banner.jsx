@@ -57,7 +57,7 @@ const Banner = () => {
               <p className="font-bold text-white lg:max-w-1/2">
                 {slide.description}
               </p>
-              <button className="secondary-btn btn border-none text-white">
+              <button className="px-3 py-3 rounded secondary-btn border-none text-white">
                 Explore More
               </button>
             </div>
