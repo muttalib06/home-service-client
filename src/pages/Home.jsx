@@ -5,10 +5,10 @@ import ServiceCard from "../components/ServiceCard";
 import { motion } from "motion/react";
 import Testimonial from "../components/Testimonial";
 import Spinner from "../components/Spinner";
-import { Pagination, Autoplay } from "swiper/modules";
-
 import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
 import MeetTeam from "../components/MeetTeam";
+import { Autoplay } from "swiper/modules";
 
 const Home = () => {
   const [services, setServices] = useState([]);
@@ -44,7 +44,6 @@ const Home = () => {
     };
     fetchServices();
   }, []);
-  console.log(customers);
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -83,7 +82,6 @@ const Home = () => {
 
         <div className="mt-10">
           <MeetTeam></MeetTeam>
-
         </div>
 
         {/* Testimonial */}
@@ -95,30 +93,30 @@ const Home = () => {
           </div>
           {/* testimonial card */}
           <div className="flex items-center justify-center min-h-screen mt-5 bg-[#f6f5ed] p-4">
-          <div className="w-full xl:max-w-4/5 mx-auto">
+            <div className="w-full xl:max-w-4/5 mx-auto">
               <Swiper
-              modules={[Autoplay]}
-              spaceBetween={30}
-              slidesPerView={3} 
-              loop={true}
-              autoplay={{
-                delay: 3000,
-                disableOnInteraction: false,
-              }}
-              speed={2000}
-              breakpoints={{
-                0: { slidesPerView: 1 },
-                768: { slidesPerView: 2 },
-                1024: { slidesPerView: 3 },
-              }}
-            >
-              {customers.map((customer, index) => (
-                <SwiperSlide key={index}>
-                  <Testimonial customer={customer} />
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          </div>
+                modules={[Autoplay]}
+                spaceBetween={30}
+                slidesPerView={Math.min(customers.length, 3)}
+                loop={customers.length > 3}
+                autoplay={{
+                  delay: 2000,
+                  disableOnInteraction: false,
+                }}
+                speed={2000}
+                breakpoints={{
+                  0: { slidesPerView: 1 },
+                  768: { slidesPerView: 2 },
+                  1024: { slidesPerView: 3 },
+                }}
+              >
+                {customers.map((customer, index) => (
+                  <SwiperSlide key={index}>
+                    <Testimonial customer={customer} />
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </div>
           </div>
         </div>
       </div>

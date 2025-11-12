@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { NavLink } from "react-router";
+import { AuthContext } from "../provider/AuthProvider";
 
 const Login = () => {
+  const { user2 } = useContext(AuthContext);
+  console.log(user2);
   return (
     <div className="bg-[#f6f5ed] ">
       <div>
@@ -11,14 +14,13 @@ const Login = () => {
         <div className="w-full md:w-4/5 lg:w-2/3 xl:w-2/5 mx-4 md:mx-0 bg-white shadow p-8 rounded">
           <form>
             <fieldset className="fieldset">
-            
               <label className="label">Email</label>
               <input
                 type="email"
                 className="input w-full"
                 placeholder="Email"
               />
-              
+
               <label className="label">Password</label>
               <input
                 type="password"
@@ -33,10 +35,10 @@ const Login = () => {
               </button>
             </fieldset>
           </form>
-          <div class="flex items-center my-3">
-            <div class="flex-grow border-t border-gray-300"></div>
-            <span class="mx-4 text-gray-500">or</span>
-            <div class="flex-grow border-t border-gray-300"></div>
+          <div className="flex items-center my-3">
+            <div className="flex-grow border-t border-gray-300"></div>
+            <span className="mx-4 text-gray-500">or</span>
+            <div className="flex-grow border-t border-gray-300"></div>
           </div>
           {/* google button */}
 
@@ -72,7 +74,9 @@ const Login = () => {
           </button>
           <p className="text-center mt-5 text-[.8rem]">
             You don't have account?{" "}
-            <NavLink to="/signup" className="primary-color">Signup</NavLink>
+            <NavLink to="/signup" className="primary-color">
+              Signup
+            </NavLink>
           </p>
         </div>
       </div>
