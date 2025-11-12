@@ -95,7 +95,7 @@ const Home = () => {
           </div>
           {/* testimonial card */}
           <div className="flex items-center justify-center min-h-screen mt-5 bg-[#f6f5ed] p-4">
-          <div className="max-w-4/5 mx-auto">
+          <div className="w-full xl:max-w-4/5 mx-auto">
               <Swiper
               modules={[Autoplay]}
               spaceBetween={30}

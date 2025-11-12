@@ -75,10 +75,10 @@ const Navbar = () => {
       )}
 
       <div className="hidden lg:block space-x-3 ">
-        <button className="btn bg-[#021f2a] text-white">
+        <button className="py-2 px-2 rounded border border-gray-500 bg-[#021f2a] text-white">
           <NavLink to="/login">Login</NavLink>
         </button>
-        <button className=" btn  shadow-none secondary-btn border-none text-white border-color-primary">
+        <button className="py-2 px-2 rounded shadow-none secondary-btn border-none text-white border-color-primary">
           <NavLink to="/signup">Register</NavLink>
         </button>
       </div>
