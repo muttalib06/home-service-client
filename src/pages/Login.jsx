@@ -8,7 +8,7 @@ const Login = () => {
         <h2 className="font-bold text-3xl text-center pt-15">Welcome Back!</h2>
       </div>
       <div className="flex justify-center items-start h-screen w-full mt-10">
-        <div className="w-1/4 bg-white shadow p-8 rounded">
+        <div className="w-full md:w-4/5 lg:w-2/3 xl:w-2/5 mx-4 md:mx-0 bg-white shadow p-8 rounded">
           <form>
             <fieldset className="fieldset">
             

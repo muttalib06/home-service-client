@@ -10,7 +10,7 @@ const Signup = () => {
       </h2>
       </div>
       <div className="flex justify-center items-start h-screen w-full mt-10">
-        <div className="w-1/4 bg-white shadow p-8 rounded">
+        <div className=" w-full md:w-4/5 lg:w-2/3 xl:w-2/5  bg-white shadow p-8 rounded mx-4 md:mx-0">
           <form>
             <fieldset className="fieldset">
               <label className="label">Name</label>
