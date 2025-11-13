@@ -43,23 +43,27 @@ const Navbar = () => {
       {/* Desktop menu */}
       <ul className="hidden xl:flex gap-5">
         <li className="hover:text-[#ff7700]">
-          <NavLink>Home</NavLink>
+          <NavLink to="/">Home</NavLink>
         </li>
         <li className="hover:text-[#ff7700]">
           <NavLink to="/services">Services</NavLink>
         </li>
-        <li className="hover:text-[#ff7700]">
-          <NavLink>My Services</NavLink>
-        </li>
-        <li className="hover:text-[#ff7700]">
-          <NavLink>Add Service</NavLink>
-        </li>
-        <li className="hover:text-[#ff7700]">
-          <NavLink>My Bookings</NavLink>
-        </li>
-        <li className="hover:text-orange-500">
-          <NavLink to="/profile">Profile</NavLink>
-        </li>
+        {user && (
+          <div className="flex gap-5">
+            <li className="hover:text-[#ff7700]">
+              <NavLink to="my-services">My Services</NavLink>
+            </li>
+            <li className="hover:text-[#ff7700]">
+              <NavLink to="add-services">Add Service</NavLink>
+            </li>
+            <li className="hover:text-[#ff7700]">
+              <NavLink to="my-bookings">My Bookings</NavLink>
+            </li>
+            <li className="hover:text-orange-500">
+              <NavLink to="/profile">Profile</NavLink>
+            </li>
+          </div>
+        )}
       </ul>
 
       {/* mobile and ipad menu */}
@@ -68,27 +72,40 @@ const Navbar = () => {
         <div className="xl:hidden absolute right-0 mt-10 text-white bg-black w-48 shadow-lg z-50 rounded p-5 ">
           <ul className="space-y-5">
             <li>
-              <NavLink onClick={() => setIsOpen(false)}>Home</NavLink>
+              <NavLink to="/" onClick={() => setIsOpen(false)}>
+                Home
+              </NavLink>
             </li>
             <li>
               <NavLink to="/services" onClick={() => setIsOpen(false)}>
                 Services
               </NavLink>
             </li>
-            <li>
-              <NavLink onClick={() => setIsOpen(false)}>My Services</NavLink>
-            </li>
-            <li>
-              <NavLink onClick={() => setIsOpen(false)}>Add Service</NavLink>
-            </li>
-            <li>
-              <NavLink onClick={() => setIsOpen(false)}>My Bookings</NavLink>
-            </li>
-            <li>
-              <NavLink to="/profile" onClick={() => setIsOpen(false)}>
-                Profile
-              </NavLink>
-            </li>
+
+            {user && (
+              <div className="space-y-5">
+                <li>
+                  <NavLink to="my-services" onClick={() => setIsOpen(false)}>
+                    My Services
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="add-services" onClick={() => setIsOpen(false)}>
+                    Add Service
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="my-bookings" onClick={() => setIsOpen(false)}>
+                    My Bookings
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/profile" onClick={() => setIsOpen(false)}>
+                    Profile
+                  </NavLink>
+                </li>
+              </div>
+            )}
           </ul>
           <div className="space-y-3 mt-4 ">
             {user ? (

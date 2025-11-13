@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { NavLink, useNavigate} from "react-router";
+import { NavLink, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../provider/AuthProvider";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { FirebaseError } from "firebase/app";
@@ -12,6 +12,9 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
+  const location = useLocation();
+  console.log(location);
+  const from = location.state?.from?.pathname || "/";
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -20,7 +23,7 @@ const Login = () => {
     const password = e.target.password.value;
     login(email, password)
       .then(() => {
-        navigate("/");
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         let message;
@@ -51,7 +54,7 @@ const Login = () => {
     setLoading(true);
     signupWithGoogle()
       .then(() => {
-        navigate("/");
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         let message;
@@ -71,10 +74,10 @@ const Login = () => {
           message =
             "Something went wrong during Google sign-in. Please try again later.";
         }
-        toast.error(message,{
-          position:"top-right",
-          autoClose:"4000"
-        })
+        toast.error(message, {
+          position: "top-right",
+          autoClose: "4000",
+        });
       });
   };
   useEffect(() => {

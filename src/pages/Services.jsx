@@ -41,7 +41,7 @@ const Services = () => {
           <p className="text-gray-500 text-4xl ">{error}!</p>
         </div>
       ) : (
-        <div className="mt-10 max-w-4/5 mx-auto grid grid-cols-3 gap-6">
+        <div className="xl:max-w-full xl:px-4 2xl:px-0  2xl:max-w-4/5 mx-auto px-4 grid lg:grid-cols-3 gap-6 mt-10">
                 {
                         services.map(service => <ServiceCard key={service._id} service={service}></ServiceCard>)
                 }
