@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import useAxios from "../hooks/useAxios";
 import Swal from "sweetalert2";
@@ -73,6 +73,10 @@ const AddServices = () => {
       console.log("save data to mongodb successfully");
     }
   };
+
+  useEffect(() => {
+    window.scrollTo(0,0)
+  },[])
 
   return (
     <div className="bg-primary h-screen">
