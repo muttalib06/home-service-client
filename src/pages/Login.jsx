@@ -99,7 +99,7 @@ const Login = () => {
               <input
                 type="email"
                 name="email"
-                className="input w-full"
+                className="input w-full focus:outline-none"
                 placeholder="Email"
               />
 
@@ -108,7 +108,7 @@ const Login = () => {
                 <input
                   type={visible ? "text" : "password"}
                   name="password"
-                  className="input w-full pr-10"
+                  className="input w-full pr-10 focus:outline-none"
                   placeholder="Password"
                 />
                 <button

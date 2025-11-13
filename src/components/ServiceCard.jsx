@@ -1,6 +1,7 @@
 import React from "react";
 import { BsArrowRight } from "react-icons/bs";
 import { motion} from "motion/react";
+import { NavLink } from "react-router";
 
 const ServiceCard = ({ service }) => {
   const { Image_URL, Service_Name,Description } = service;
@@ -31,9 +32,9 @@ const ServiceCard = ({ service }) => {
           </div>
 
           {/* Arrow Button */}
-          <button className="w-14 h-14 bg-orange-500 hover:bg-orange-600 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110  hover:shadow-lg ">
+          <NavLink to="/service-detail" className="w-14 h-14 bg-orange-500 hover:bg-orange-600 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110  hover:shadow-lg ">
             <BsArrowRight className="w-7 h-7 text-white" strokeWidth={2} />
-          </button>
+          </NavLink>
         </div>
 
         {/* Bottom Border Line */}

@@ -9,6 +9,7 @@ import PrivateRouter from "../provider/PrivateRouter";
 import MyServices from "../pages/MyServices";
 import AddServices from "../pages/AddServices";
 import MyBookings from "../pages/MyBookings";
+import ServiceDetail from "../pages/ServiceDetail";
 
 export const router = createBrowserRouter([
   {
@@ -63,6 +64,10 @@ export const router = createBrowserRouter([
           </PrivateRouter>
         ),
       },
+      {
+        path:"service-detail",
+        element:<ServiceDetail></ServiceDetail>
+      }
     ],
   },
 ]);

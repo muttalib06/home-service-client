@@ -156,21 +156,21 @@ const Signup = () => {
               <input
                 type="text"
                 name="name"
-                className="input w-full"
+                className="input w-full focus:outline-none"
                 placeholder="Name"
               />
               <label className="label">Email</label>
               <input
                 type="email"
                 name="email"
-                className="input w-full"
+                className="input w-full focus:outline-none"
                 placeholder="Email"
               />
               <label className="label">Photo URl</label>
               <input
                 type="text"
                 name="photo_url"
-                className="input w-full"
+                className="input w-full focus:outline-none"
                 placeholder="Photo URL"
               />
               <div className="relative w-full">
@@ -178,7 +178,7 @@ const Signup = () => {
                 <input
                   type={visible ? "text" : "password"}
                   name="password"
-                  className="input w-full pr-10"
+                  className="input w-full pr-10 focus:outline-none"
                   placeholder="Password"
                 />
                 <button
