@@ -5,7 +5,8 @@ import Spinner from "../components/Spinner";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Signup = () => {
-  const { signupWithGoogle, setUser, signup,} = useContext(AuthContext);
+  const { signupWithGoogle, setUser, signup, updateUserProfile } =
+    useContext(AuthContext);
   const [error, setError] = useState("");
   const [error2, setError2] = useState("");
   const [loading, setLoading] = useState(false);
@@ -52,8 +53,26 @@ const Signup = () => {
     signup(email, password)
       .then((result) => {
         const user = result.user;
-        setUser(user);
-        navigate("/");
+
+        // user update function;
+        updateUserProfile(name, photoUrl)
+          .then(() => {
+            setUser({ ...user, displayName: name, photoURL: photoUrl });
+            navigate("/");
+          })
+          .catch((error) => {
+            if (error.code === "auth/network-request-failed") {
+              setError("Network error! Please check your internet connection.");
+            } else if (error.code === "auth/user-token-expired") {
+              setError("Session expired. Please sign in again.");
+            } else if (error.code === "auth/invalid-user-token") {
+              setError(
+                "Your session is invalid. Try logging out and signing in again."
+              );
+            } else {
+              setError("Profile update failed! Please try again later.");
+            }
+          });
       })
       .catch((error) => {
         let message = "";
