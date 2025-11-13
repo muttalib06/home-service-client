@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import useAxios from "../hooks/useAxios";
+import Swal from "sweetalert2";
 
 const AddServices = () => {
   const { user } = useContext(AuthContext);
@@ -10,28 +11,64 @@ const AddServices = () => {
   //   save data to mongodb;
   const handleAddService = async (e) => {
     e.preventDefault();
-    const serviceName = e.target.serviceName.value;
-    const category = e.target.category.value;
-    const price = e.target.price.value;
-    const description = e.target.description.value;
-    const providerName = e.target.providerName.value;
-    const email = e.target.email.value;
-    const imageUrl = e.target.imageUrl.value;
+    const Service_Name = e.target.serviceName.value;
+    const Category = e.target.category.value;
+    const Price = parseFloat(e.target.price.value);
+    const Description = e.target.description.value;
+    const Provider_Name = e.target.providerName.value;
+    const Email = e.target.email.value;
+    const Image_URL = e.target.imageUrl.value;
     const newService = {
-      serviceName,
-      category,
-      price,
-      description,
-      providerName,
-      email,
-      imageUrl,
+      Service_Name,
+      Category,
+      Price,
+      Description,
+      Provider_Name,
+      Email,
+      Image_URL,
     };
 
     try {
       const response = await commonAxios.post("/add-service", newService);
-      console.log(response.data);
+      if (response.data.insertedId) {
+        Swal.fire({
+          title: "Added Successfully",
+          icon: "success",
+          draggable: true,
+          confirmButtonColor: "#ff7700",
+        });
+      }
     } catch (error) {
-      console.log(error);
+      if (error.response) {
+        // Server responded with an error (like validation or DB issue)
+        Swal.fire({
+          title: "Failed to Add Service",
+          text:
+            error.response.data?.message ||
+            "There was a problem saving your service. Please try again later.",
+          icon: "error",
+          confirmButtonText: "Try Again",
+          confirmButtonColor: "#d33",
+        });
+      } else if (error.request) {
+        // No response from server
+        Swal.fire({
+          title: "Network Error ⚠️",
+          text: "Unable to connect to the server. Please check your internet connection.",
+          icon: "warning",
+          confirmButtonText: "Retry",
+          confirmButtonColor: "#f39c12",
+        });
+      } else {
+        // Unexpected error
+        Swal.fire({
+          title: "Unexpected Error",
+          text: "Something went wrong while adding your service.",
+          icon: "error",
+          confirmButtonText: "Close",
+          confirmButtonColor: "#555",
+        });
+      }
     } finally {
       console.log("save data to mongodb successfully");
     }
@@ -70,7 +107,7 @@ const AddServices = () => {
             <div className="flex-1">
               <legend className="fieldset-legend">Price</legend>
               <input
-                type="text"
+                type="number"
                 required
                 name="price"
                 className="input w-full focus:outline-none"
@@ -78,7 +115,7 @@ const AddServices = () => {
               />
             </div>
           </div>
-          <legend className="fieldset-legend">Price</legend>
+          <legend className="fieldset-legend">Description</legend>
           <textarea
             className="textarea w-full resize-none focus:outline-none"
             name="description"
