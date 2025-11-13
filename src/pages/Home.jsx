@@ -37,7 +37,7 @@ const Home = () => {
         setServices(response.data);
       } catch (error) {
         console.log(error);
-        setError("Failed to fetch data");
+        setError("Error");
       } finally {
         setLoading(false);
       }
@@ -70,8 +70,8 @@ const Home = () => {
           {loading ? (
             <Spinner></Spinner>
           ) : error ? (
-            <div className="flex justify-center items-center">
-              <p className="text-gray-500 text-3xl mt-5">{error}!</p>
+            <div className="flex justify-center items-center h-screen">
+              <p className="text-gray-500 text-4xl ">{error}!</p>
             </div>
           ) : (
             <div className="xl:max-w-full xl:px-4 2xl:px-0  2xl:max-w-4/5 mx-auto px-4 grid lg:grid-cols-3 gap-6 mt-10">

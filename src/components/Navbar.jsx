@@ -46,7 +46,7 @@ const Navbar = () => {
           <NavLink>Home</NavLink>
         </li>
         <li className="hover:text-[#ff7700]">
-          <NavLink>Services</NavLink>
+          <NavLink to="/services">Services</NavLink>
         </li>
         <li className="hover:text-[#ff7700]">
           <NavLink>My Services</NavLink>
@@ -71,7 +71,9 @@ const Navbar = () => {
               <NavLink onClick={() => setIsOpen(false)}>Home</NavLink>
             </li>
             <li>
-              <NavLink onClick={() => setIsOpen(false)}>Services</NavLink>
+              <NavLink to="/services" onClick={() => setIsOpen(false)}>
+                Services
+              </NavLink>
             </li>
             <li>
               <NavLink onClick={() => setIsOpen(false)}>My Services</NavLink>
