@@ -79,12 +79,12 @@ const AddServices = () => {
   },[])
 
   return (
-    <div className="bg-primary h-screen">
+    <div className="bg-primary px-3 lg:px-8 xl:px-0 h-screen">
       <h2 className="font-bold text-2xl text-center py-8">Add a New Service</h2>
 
       <form
         onSubmit={handleAddService}
-        className="shadow-xl p-6 max-w-2/4 mx-auto rounded bg-white"
+        className="shadow-xl p-6 xl:max-w-2/4 mx-auto rounded bg-white mb-8"
       >
         {/* first form */}
         <fieldset className="fieldset">
@@ -97,7 +97,7 @@ const AddServices = () => {
             placeholder="Type here"
           />
 
-          <div className="flex justify-between gap-5">
+          <div className="flex flex-col md:flex-row justify-between gap-5">
             <div className="flex-1">
               <legend className="fieldset-legend">Category</legend>
               <input
@@ -127,7 +127,7 @@ const AddServices = () => {
             placeholder="Description"
           ></textarea>
 
-          <div className="flex justify-between gap-5">
+          <div className="flex flex-col md:flex-row justify-between gap-5">
             <div className="flex-1">
               <legend className="fieldset-legend">Provider Name</legend>
               <input

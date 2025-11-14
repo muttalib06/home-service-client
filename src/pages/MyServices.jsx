@@ -28,7 +28,6 @@ const MyServices = () => {
       if (result.isConfirmed) {
         try {
           const response = await commonAxios.delete(`/myServices/${id}`);
-          console.log(response);
           if (response.data.deletedCount === 1) {
             setMyServices(
               myServices.filter((myService) => myService._id !== id)
@@ -114,7 +113,7 @@ const MyServices = () => {
   return (
     <div className="h-screen">
       <h2 className="font-bold text-2xl text-center py-5">My Services</h2>
-      <div className="overflow-x-auto mt-5 max-w-4/5 mx-auto">
+      <div className="overflow-x-auto mt-5 px-4 xl:px-0 xl:max-w-4/5 mx-auto">
         {loading ? (
           <Spinner></Spinner>
         ) : error ? (
