@@ -4,6 +4,7 @@ import useAxios from "../hooks/useAxios";
 import Spinner from "../components/Spinner";
 import { FaTrash } from "react-icons/fa";
 import Swal from "sweetalert2";
+import ErrorPage from "./ErrorPage";
 
 const MyBookings = () => {
   const { user } = useContext(AuthContext);

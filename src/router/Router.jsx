@@ -11,11 +11,13 @@ import AddServices from "../pages/AddServices";
 import MyBookings from "../pages/MyBookings";
 import ServiceDetail from "../pages/ServiceDetail";
 import axios from "axios";
+import ErrorPage from "../pages/ErrorPage";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         index: true,
