@@ -4,7 +4,7 @@ import { motion } from "motion/react";
 import { NavLink } from "react-router";
 
 const ServiceCard = ({ service }) => {
-  const { Image_URL, Service_Name, Description, _id } = service;
+  const { Image_URL, Service_Name, Description, _id,Price } = service;
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
@@ -26,9 +26,10 @@ const ServiceCard = ({ service }) => {
         <div className="px-8 py-12 flex flex-col flex-1">
           <div className="flex items-start justify-between gap-8 flex-1">
             <div className="flex-1">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">
+              <h2 className="text-2xl font-bold text-gray-900 mb-2">
                 {Service_Name}
               </h2>
+              <p className="mb-2 text-2xl font-bold">${Price}</p>
               <p className="text-gray-500 text-sm line-clamp-3">
                 {Description}
               </p>

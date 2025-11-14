@@ -9,6 +9,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import MeetTeam from "../components/MeetTeam";
 import { Autoplay } from "swiper/modules";
+import { FaChevronDown } from "react-icons/fa";
+import useAxios from "../hooks/useAxios";
+import Swal from "sweetalert2";
 
 const Home = () => {
   const [services, setServices] = useState([]);
@@ -48,6 +51,7 @@ const Home = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -58,6 +62,8 @@ const Home = () => {
       <div>
         <Banner></Banner>
 
+   
+
         {/* services section */}
         <div className="mt-10">
           <div className="flex justify-center items-center px-4 lg:px-0">
@@ -65,8 +71,8 @@ const Home = () => {
               Reliable ServEase <br /> Services{" "}
               <span className="font-bold">You Can Trust</span>{" "}
             </h2>
-          </div>
-
+          </div>       
+          
           {loading ? (
             <Spinner></Spinner>
           ) : error ? (
