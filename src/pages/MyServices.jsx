@@ -88,6 +88,7 @@ const MyServices = () => {
         icon: "success",
       });
     } catch {
+      document.getElementById("my_modal_5").close();
       Swal.fire({
         title: "Failed to update",
         text: "Failed to update the service. Please try again later.",
@@ -223,10 +224,15 @@ const MyServices = () => {
                 Update
               </button>
 
-              <form method="dialog">
-                {/* if there is a button in form, it will close the modal */}
-                <button className="btn">Close</button>
-              </form>
+              <button
+                type="button"
+                onClick={() => {
+                  document.getElementById("my_modal_5").close();
+                }}
+                className="btn"
+              >
+                Close
+              </button>
             </div>
           </form>
         </div>

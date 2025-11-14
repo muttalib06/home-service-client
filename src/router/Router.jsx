@@ -10,6 +10,7 @@ import MyServices from "../pages/MyServices";
 import AddServices from "../pages/AddServices";
 import MyBookings from "../pages/MyBookings";
 import ServiceDetail from "../pages/ServiceDetail";
+import axios from "axios";
 
 export const router = createBrowserRouter([
   {
@@ -65,9 +66,15 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path:"service-detail",
-        element:<ServiceDetail></ServiceDetail>
-      }
+        path: "service-detail/:id",
+        loader: async ({ params }) => {
+          const res = await axios.get(
+            `http://localhost:3000/service-detail/${params.id}`
+          );
+          return res.data;
+        },
+        element: <ServiceDetail></ServiceDetail>,
+      },
     ],
   },
 ]);
