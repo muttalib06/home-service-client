@@ -10,7 +10,6 @@ import "swiper/css";
 import MeetTeam from "../components/MeetTeam";
 import { Autoplay } from "swiper/modules";
 import { FaChevronDown, FaToolbox, FaTools } from "react-icons/fa";
-import useAxios from "../hooks/useAxios";
 import Swal from "sweetalert2";
 
 const Home = () => {
@@ -27,8 +26,6 @@ const Home = () => {
       } catch (err) {
         console.log(err);
         setError("Failed to load data");
-      } finally {
-        setLoading(false);
       }
     };
     fetchCustomers();
