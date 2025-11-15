@@ -12,6 +12,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
+import { NavLink } from "react-router";
 const Banner = () => {
   const slides = [
     {
@@ -57,9 +58,9 @@ const Banner = () => {
               <p className="font-bold text-white lg:max-w-1/2">
                 {slide.description}
               </p>
-              <button className="px-3 py-3 rounded secondary-btn border-none text-white">
+              <NavLink to="/services" className="px-3 py-3 rounded secondary-btn border-none text-white">
                 Explore More
-              </button>
+              </NavLink>
             </div>
           </div>
         </SwiperSlide>

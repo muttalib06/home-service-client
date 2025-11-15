@@ -65,8 +65,8 @@ const ServiceDetail = () => {
     window.scrollTo(0, 0);
   }, []);
   return (
-    <div className="max-w-[90%] mx-auto mt-10 flex space-x-15">
-      <div className="flex-1">
+    <div className="max-w-[90%] mx-auto mt-10 flex flex-col lg:flex-row space-x-15">
+      <div className="lg:flex-1">
         <img className="rounded" src={image} alt="" />
         <div className="my-5">
           <h3 className="font-bold text-2xl border-b pb-3">
@@ -79,7 +79,7 @@ const ServiceDetail = () => {
         </div>
       </div>
 
-      <div className="flex-1">
+      <div className="lg:flex-1">
         <div className="space-y-3 border-b pb-4">
           <h2 className="font-bold text-2xl">{serviceName}</h2>
           <p>{category}</p>
