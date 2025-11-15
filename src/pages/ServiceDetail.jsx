@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { use, useContext, useEffect, useState } from "react";
 import { useLoaderData } from "react-router";
 import { AuthContext } from "../provider/AuthProvider";
 import useAxios from "../hooks/useAxios";
@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 const ServiceDetail = () => {
   const { user } = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
+  const [disable, setDisable] = useState(false);
   const commonAxios = useAxios();
   const userEmail = user?.email;
   const data = useLoaderData();
@@ -55,6 +56,12 @@ const ServiceDetail = () => {
   };
 
   useEffect(() => {
+    if (userEmail === email) {
+      setDisable(true);
+    }
+  }, [email, userEmail]);
+
+  useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
   return (
@@ -94,12 +101,13 @@ const ServiceDetail = () => {
         </div>
 
         <button
+          disabled={disable}
           onClick={() => {
             document.getElementById("my_modal_5").showModal();
           }}
           className="btn secondary-btn w-full mt-5 text-white"
         >
-          Book Now
+          {disable ? "Cannot Book Own Service" : "Book Now"}
         </button>
       </div>
 

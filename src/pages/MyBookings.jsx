@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import useAxios from "../hooks/useAxios";
 import Spinner from "../components/Spinner";
-import { FaTrash } from "react-icons/fa";
+import { FaTools, FaTrash } from "react-icons/fa";
 import Swal from "sweetalert2";
 import ErrorPage from "./ErrorPage";
 
@@ -89,17 +89,23 @@ const MyBookings = () => {
   if (bookings.length === 0) {
     return (
       <div className="h-screen">
-        <h2 className="font-bold text-2xl text-center py-5">My Bookings</h2>
+        <h2 className="text-4xl text-center font-extrabold  py-5">
+          My Bookings
+        </h2>
         <p className="text-gray-500 text-4xl ">There is no Bookings?</p>
       </div>
     );
   }
   return (
     <div className="h-screen">
-      <h2 className="font-bold text-2xl text-center py-5">My Bookings</h2>
+      <h2 className="text-4xl  font-extrabold text-center pt-5">My Bookings</h2>
+
+      <div className="flex justify-center items-center my-1 ">
+        <FaTools className="text-3xl text-orange-500"></FaTools>
+      </div>
 
       {/* table */}
-      <div className="overflow-x-auto max-w-4/5 mx-auto">
+      <div className="overflow-x-auto max-w-4/5 mx-auto mt-8">
         <table className="table table-zebra">
           {/* head */}
           <thead>

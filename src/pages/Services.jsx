@@ -4,7 +4,7 @@ import Spinner from "../components/Spinner";
 import ServiceCard from "../components/ServiceCard";
 import Swal from "sweetalert2";
 import useAxios from "../hooks/useAxios";
-import { FaChevronDown } from "react-icons/fa";
+import { FaChevronDown, FaTools } from "react-icons/fa";
 
 const Services = () => {
   const [services, setServices] = useState([]);
@@ -68,10 +68,13 @@ const Services = () => {
   return (
     <div className="mt-10">
       <div className="flex justify-center items-center">
-        <h2 className="text-4xl text-center border-b-2 border-orange-500 pb-3">
-          Reliable ServEase <br /> Services{" "}
-          <span className="font-bold">You Can Trust</span>{" "}
+        <h2 className="text-4xl text-center font-extrabold">
+          Reliable ServEase <br /> Services You Can Trust
         </h2>
+      </div>
+
+      <div className="flex justify-center items-center my-4">
+        <FaTools className="text-3xl text-orange-500"></FaTools>
       </div>
 
       <div className="flex justify-end items-center max-w-4/5 mx-auto">
@@ -115,7 +118,6 @@ const Services = () => {
           Reset Filter
         </button>
       </div>
-
 
       {/* services */}
 

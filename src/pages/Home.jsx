@@ -9,7 +9,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import MeetTeam from "../components/MeetTeam";
 import { Autoplay } from "swiper/modules";
-import { FaChevronDown } from "react-icons/fa";
+import { FaChevronDown, FaToolbox, FaTools } from "react-icons/fa";
 import useAxios from "../hooks/useAxios";
 import Swal from "sweetalert2";
 
@@ -62,17 +62,17 @@ const Home = () => {
       <div>
         <Banner></Banner>
 
-   
-
         {/* services section */}
         <div className="mt-10">
           <div className="flex justify-center items-center px-4 lg:px-0">
-            <h2 className="text-4xl text-center border-b-2 border-orange-500 pb-3">
-              Reliable ServEase <br /> Services{" "}
-              <span className="font-bold">You Can Trust</span>{" "}
+            <h2 className="text-4xl text-center font-extrabold">
+              Reliable ServEase <br /> Services You Can Trust
             </h2>
-          </div>       
-          
+          </div>
+          <div className="flex justify-center items-center my-4">
+            <FaTools className="text-3xl text-orange-500"></FaTools>
+          </div>
+
           {loading ? (
             <Spinner></Spinner>
           ) : error ? (
@@ -97,9 +97,12 @@ const Home = () => {
         {/* Testimonial */}
         <div className="mt-10">
           <div className="flex justify-center items-center">
-            <h2 className="text-4xl font-bold text-center border-b-2 border-orange-500 pb-3">
+            <h2 className="text-4xl text-center font-extrabold">
               Happy Client Says About Us
             </h2>
+          </div>
+          <div className="flex justify-center items-center my-4">
+            <FaTools className="text-3xl text-orange-500"></FaTools>
           </div>
           {/* testimonial card */}
           <div className="flex items-center justify-center min-h-screen mt-5 bg-[#f6f5ed] p-4">

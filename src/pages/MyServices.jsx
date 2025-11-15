@@ -5,6 +5,7 @@ import Spinner from "../components/Spinner";
 import Swal from "sweetalert2";
 import { NavLink } from "react-router";
 import { BsTrash } from "react-icons/bs";
+import { FaTools } from "react-icons/fa";
 
 const MyServices = () => {
   const [myServices, setMyServices] = useState([]);
@@ -112,7 +113,11 @@ const MyServices = () => {
 
   return (
     <div className="h-screen">
-      <h2 className="font-bold text-2xl text-center py-5">My Services</h2>
+      <h2 className="text-4xl text-center font-extrabold py-5">My Services</h2>
+
+      <div className="flex justify-center items-center">
+        <FaTools className="text-3xl text-orange-500"></FaTools>
+      </div>
       <div className="overflow-x-auto mt-5 px-4 xl:px-0 xl:max-w-4/5 mx-auto">
         {loading ? (
           <Spinner></Spinner>

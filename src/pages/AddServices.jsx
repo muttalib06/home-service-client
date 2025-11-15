@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import useAxios from "../hooks/useAxios";
 import Swal from "sweetalert2";
+import { FaTools } from "react-icons/fa";
 
 const AddServices = () => {
   const { user } = useContext(AuthContext);
@@ -75,16 +76,21 @@ const AddServices = () => {
   };
 
   useEffect(() => {
-    window.scrollTo(0,0)
-  },[])
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="bg-primary px-3 lg:px-8 xl:px-0 h-screen">
-      <h2 className="font-bold text-2xl text-center py-8">Add a New Service</h2>
+      <h2 className="text-4xl text-center font-extrabold pt-8">
+        Add a New Service
+      </h2>
+      <div className="flex justify-center items-center my-1">
+        <FaTools className="text-3xl text-orange-500"></FaTools>
+      </div>
 
       <form
         onSubmit={handleAddService}
-        className="shadow-xl p-6 xl:max-w-2/4 mx-auto rounded bg-white mb-8"
+        className="shadow-xl p-6 xl:max-w-2/4 mx-auto rounded bg-white mb-8 mt-8"
       >
         {/* first form */}
         <fieldset className="fieldset">

@@ -1,9 +1,9 @@
 import React from "react";
 import { motion } from "motion/react";
-import team1 from "../assets/team/CP7A9155-1-scaled.jpg";
-import team2 from "../assets/team/titan-service-plumbing-howell.webp";
-import team3 from "../assets/team/young-cleaning-guy-wearing-uniform-cap-with-gloves-isolated-white-wall.jpg";
-import team4 from "../assets/team/young-hansdome-man-wearing-apron-holding-bucket-with-cleaning-tools.jpg";
+import team1 from "../assets/team/cleaner.jpeg";
+import team2 from "../assets/team/door-repair2.webp";
+import team3 from "../assets/team/plumber.avif";
+import team4 from "../assets/team/plumber2.jpg";
 
 const MeetTeam = () => {
   return (
@@ -16,10 +16,10 @@ const MeetTeam = () => {
           transition={{ duration: 2.5, ease: "easeOut" }}
           className="flex-1 grid grid-cols-2 gap-3"
         >
-          <img className="h-full" src={team1} alt="" />
-          <img className="h-full" src={team2} alt="" />
-          <img className="h-full" src={team3} alt="" />
-          <img className="h-full" src={team4} alt="" />
+          <img className="h-full rounded" src={team1} alt="" />
+          <img className="h-full rounded" src={team2} alt="" />
+          <img className="h-full rounded" src={team3} alt="" />
+          <img className="h-full rounded" src={team4} alt="" />
         </motion.div>
 
         <div className="flex-1 space-y-4">
