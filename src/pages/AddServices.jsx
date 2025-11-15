@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import useAxios from "../hooks/useAxios";
 import Swal from "sweetalert2";
@@ -8,6 +8,7 @@ const AddServices = () => {
   const { user } = useContext(AuthContext);
   const email = user?.email;
   const commonAxios = useAxios();
+  const [disable, setDisable] = useState(false);
 
   //   save data to mongodb;
   const handleAddService = async (e) => {
@@ -38,6 +39,7 @@ const AddServices = () => {
           draggable: true,
           confirmButtonColor: "#ff7700",
         });
+        setDisable(true);
       }
     } catch (error) {
       if (error.response) {
@@ -73,6 +75,12 @@ const AddServices = () => {
     } finally {
       console.log("save data to mongodb successfully");
     }
+  };
+
+  // form reset function ;
+  const handleReset = () => {
+    document.querySelector("form").reset();
+    setDisable(false);
   };
 
   useEffect(() => {
@@ -167,9 +175,20 @@ const AddServices = () => {
             placeholder="Type here"
           />
         </fieldset>
-        <div className="mt-4 flex justify-end">
-          <button type="submit" className="secondary-btn btn text-white">
-            Add Service
+        <div className="mt-4 flex justify-between items-center">
+          <button
+            onClick={handleReset}
+            type="button"
+            className="secondary-btn btn text-white"
+          >
+            Reset
+          </button>
+          <button
+            disabled={disable}
+            type="submit"
+            className="secondary-btn btn text-white"
+          >
+            {disable ? "Added" : "  Add Service"}
           </button>
         </div>
       </form>

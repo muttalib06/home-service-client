@@ -71,7 +71,7 @@ export const router = createBrowserRouter([
         path: "service-detail/:id",
         loader: async ({ params }) => {
           const res = await axios.get(
-            `http://localhost:3000/service-detail/${params.id}`
+            `https://home-service-api-server.onrender.com/service-detail/${params.id}`
           );
           return res.data;
         },

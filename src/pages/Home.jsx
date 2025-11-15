@@ -11,17 +11,19 @@ import MeetTeam from "../components/MeetTeam";
 import { Autoplay } from "swiper/modules";
 import { FaChevronDown, FaToolbox, FaTools } from "react-icons/fa";
 import Swal from "sweetalert2";
+import useAxios from "../hooks/useAxios";
 
 const Home = () => {
   const [services, setServices] = useState([]);
   const [customers, setCustomers] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  const commonAxios =useAxios()
 
   useEffect(() => {
     const fetchCustomers = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/customers");
+        const response = await commonAxios.get("/customers");
         setCustomers(response.data);
       } catch (err) {
         console.log(err);
@@ -33,7 +35,7 @@ const Home = () => {
   useEffect(() => {
     const fetchServices = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/services-6");
+        const response = await commonAxios.get("/services-6");
         setServices(response.data);
       } catch (error) {
         console.log(error);

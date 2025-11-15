@@ -1,4 +1,4 @@
-import axios from "axios";
+
 import React, { useEffect, useState } from "react";
 import Spinner from "../components/Spinner";
 import ServiceCard from "../components/ServiceCard";
@@ -41,7 +41,7 @@ const Services = () => {
 
   const handleReset = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/all-services");
+      const response = await commonAxios.get("/all-services");
       setServices(response.data);
     } catch {
       setError("Error");
@@ -53,7 +53,7 @@ const Services = () => {
   useEffect(() => {
     const fetchServices = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/all-services");
+        const response = await commonAxios.get("/all-services");
         setServices(response.data);
       } catch {
         setError("Error");
