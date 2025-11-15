@@ -88,7 +88,7 @@ const AddServices = () => {
   }, []);
 
   return (
-    <div className="bg-primary px-3 lg:px-8 xl:px-0 h-screen">
+    <div className="bg-primary px-3 lg:px-8 xl:px-0">
       <h2 className="text-4xl text-center font-extrabold pt-8">
         Add a New Service
       </h2>
