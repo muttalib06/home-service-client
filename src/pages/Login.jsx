@@ -78,6 +78,9 @@ const Login = () => {
           position: "top-right",
           autoClose: "4000",
         });
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
   useEffect(() => {
