@@ -75,7 +75,11 @@ export const router = createBrowserRouter([
           );
           return res.data;
         },
-        element: <ServiceDetail></ServiceDetail>,
+        element: (
+          <PrivateRouter>
+            <ServiceDetail></ServiceDetail>
+          </PrivateRouter>
+        ),
       },
     ],
   },
