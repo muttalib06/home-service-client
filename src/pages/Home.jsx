@@ -18,7 +18,8 @@ const Home = () => {
   const [customers, setCustomers] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-  const commonAxios =useAxios()
+  const [isClient, setIsClient] = useState(false);
+  const commonAxios = useAxios();
 
   useEffect(() => {
     const fetchCustomers = async () => {
@@ -31,7 +32,7 @@ const Home = () => {
       }
     };
     fetchCustomers();
-  }, []);
+  }, [commonAxios]);
   useEffect(() => {
     const fetchServices = async () => {
       try {
@@ -45,9 +46,10 @@ const Home = () => {
       }
     };
     fetchServices();
-  }, []);
+  }, [commonAxios]);
 
   useEffect(() => {
+    setIsClient(true);
     window.scrollTo(0, 0);
   }, []);
 
@@ -109,18 +111,17 @@ const Home = () => {
               <Swiper
                 modules={[Autoplay]}
                 spaceBetween={30}
-                slidesPerView={Math.min(customers.length, 3)}
+                slidesPerView={1}
                 loop={customers.length > 3}
+                breakpoints={{
+                  768: { slidesPerView: 2 },
+                  1024: { slidesPerView: 3 },
+                }}
                 autoplay={{
                   delay: 2000,
                   disableOnInteraction: false,
                 }}
                 speed={2000}
-                breakpoints={{
-                  0: { slidesPerView: 1 },
-                  768: { slidesPerView: 2 },
-                  1024: { slidesPerView: 3 },
-                }}
               >
                 {customers.map((customer, index) => (
                   <SwiperSlide key={index}>
