@@ -68,10 +68,20 @@ const Navbar = () => {
       {/* Desktop menu */}
       <ul className="hidden xl:flex gap-5">
         <li className="hover:text-[#ff7700]">
-          <NavLink to="/">Home</NavLink>
+          <NavLink
+            className={({isActive}) => (isActive ? "text-[#ff7700]" : "")}
+            to="/"
+          >
+            Home
+          </NavLink>
         </li>
         <li className="hover:text-[#ff7700]">
-          <NavLink to="/services">Services</NavLink>
+          <NavLink
+            className={({isActive}) => (isActive ? "text-[#ff7700]" : "")}
+            to="/services"
+          >
+            Services
+          </NavLink>
         </li>
         {user && (
           <div className="flex gap-5">
@@ -79,13 +89,28 @@ const Navbar = () => {
               <NavLink to="my-services">My Services</NavLink>
             </li>
             <li className="hover:text-[#ff7700]">
-              <NavLink to="add-services">Add Service</NavLink>
+              <NavLink
+                className={({isActive}) => (isActive ? "text-[#ff7700]" : "")}
+                to="add-services"
+              >
+                Add Service
+              </NavLink>
             </li>
             <li className="hover:text-[#ff7700]">
-              <NavLink to="my-bookings">My Bookings</NavLink>
+              <NavLink
+                className={({isActive}) => (isActive ? "text-[#ff7700]" : "")}
+                to="my-bookings"
+              >
+                My Bookings
+              </NavLink>
             </li>
             <li className="hover:text-orange-500">
-              <NavLink to="/profile">Profile</NavLink>
+              <NavLink
+                className={({isActive}) => (isActive ? "text-[#ff7700]" : "")}
+                to="/profile"
+              >
+                Profile
+              </NavLink>
             </li>
           </div>
         )}
