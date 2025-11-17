@@ -69,7 +69,7 @@ const Navbar = () => {
       <ul className="hidden xl:flex gap-5">
         <li className="hover:text-[#ff7700]">
           <NavLink
-            className={({isActive}) => (isActive ? "text-[#ff7700]" : "")}
+            className={({ isActive }) => (isActive ? "text-[#ff7700]" : "")}
             to="/"
           >
             Home
@@ -77,7 +77,7 @@ const Navbar = () => {
         </li>
         <li className="hover:text-[#ff7700]">
           <NavLink
-            className={({isActive}) => (isActive ? "text-[#ff7700]" : "")}
+            className={({ isActive }) => (isActive ? "text-[#ff7700]" : "")}
             to="/services"
           >
             Services
@@ -90,7 +90,7 @@ const Navbar = () => {
             </li>
             <li className="hover:text-[#ff7700]">
               <NavLink
-                className={({isActive}) => (isActive ? "text-[#ff7700]" : "")}
+                className={({ isActive }) => (isActive ? "text-[#ff7700]" : "")}
                 to="add-services"
               >
                 Add Service
@@ -98,7 +98,7 @@ const Navbar = () => {
             </li>
             <li className="hover:text-[#ff7700]">
               <NavLink
-                className={({isActive}) => (isActive ? "text-[#ff7700]" : "")}
+                className={({ isActive }) => (isActive ? "text-[#ff7700]" : "")}
                 to="my-bookings"
               >
                 My Bookings
@@ -106,7 +106,7 @@ const Navbar = () => {
             </li>
             <li className="hover:text-orange-500">
               <NavLink
-                className={({isActive}) => (isActive ? "text-[#ff7700]" : "")}
+                className={({ isActive }) => (isActive ? "text-[#ff7700]" : "")}
                 to="/profile"
               >
                 Profile
@@ -122,12 +122,20 @@ const Navbar = () => {
         <div className="xl:hidden absolute right-0 mt-10 text-white bg-black w-48 shadow-lg z-50 rounded p-5 ">
           <ul className="space-y-5">
             <li>
-              <NavLink to="/" onClick={() => setIsOpen(false)}>
+              <NavLink
+                className={({ isActive }) => (isActive ? "text-[#ff7700]" : "")}
+                to="/"
+                onClick={() => setIsOpen(false)}
+              >
                 Home
               </NavLink>
             </li>
             <li>
-              <NavLink to="/services" onClick={() => setIsOpen(false)}>
+              <NavLink
+                className={({ isActive }) => (isActive ? "text-[#ff7700]" : "")}
+                to="/services"
+                onClick={() => setIsOpen(false)}
+              >
                 Services
               </NavLink>
             </li>
@@ -135,12 +143,24 @@ const Navbar = () => {
             {user && (
               <div className="space-y-5">
                 <li>
-                  <NavLink to="my-services" onClick={() => setIsOpen(false)}>
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive ? "text-[#ff7700]" : ""
+                    }
+                    to="my-services"
+                    onClick={() => setIsOpen(false)}
+                  >
                     My Services
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="add-services" onClick={() => setIsOpen(false)}>
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive ? "text-[#ff7700]" : ""
+                    }
+                    to="add-services"
+                    onClick={() => setIsOpen(false)}
+                  >
                     Add Service
                   </NavLink>
                 </li>
